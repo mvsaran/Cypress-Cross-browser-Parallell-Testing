@@ -177,3 +177,6 @@ jobs:
 4.  Test results will be available in two places:
     -   **Cypress Dashboard:** For detailed, recorded test analytics.
     -   **GitHub Artifacts:** The merged Mochawesome HTML report can be downloaded from the workflow run's summary page if you add an upload artifact step.
+---  
+## Author
+Saran Kumar
