@@ -2,6 +2,7 @@
 
 **Project Overview:**  
 This project demonstrates **cross-browser automation** using **Cypress 15.3.0** with **Cypress Cloud**. Tests are executed in **Chrome, Firefox, and Edge** simultaneously using **parallel jobs**, and results are combined into a **single report** for easy viewing.  
+<img width="1536" height="1024" alt="ChatGPT Image Oct 1, 2025, 05_04_21 PM" src="https://github.com/user-attachments/assets/6ae007cd-be5b-4df3-b89b-847804dd0137" />
 
 ---
 
