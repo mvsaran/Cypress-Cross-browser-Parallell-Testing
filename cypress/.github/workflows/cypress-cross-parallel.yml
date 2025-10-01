@@ -1,4 +1,4 @@
-name: E2E — Cross-browser + Parallel
+name: Cypress Tests - Cross Browser & Parallel
 
 on:
   push:
@@ -7,46 +7,33 @@ on:
     branches: [ main ]
 
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-    outputs:
-      cibuuid: ${{ steps.id.outputs.cibuuid }}
-    steps:
-      - name: Generate ci-build-id
-        id: id
-        run: |
-          echo "cibuuid=sha-${GITHUB_SHA}-time-$(date +%s)" >> $GITHUB_OUTPUT
-
-  install:
-    runs-on: ubuntu-latest
-    needs: prepare
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Install dependencies
-        run: npm ci
-
   cypress-run:
-    needs: install
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        browser: [chrome, firefox, webkit]  # cross-browser
-        worker: [1,2]                       # number of parallel workers per browser (adjust to 1-3)
-    steps:
-      - uses: actions/checkout@v4
+        browser: [chrome, firefox, edge]   # browsers
+        containers: [1, 2]                 # parallel machines per browser
 
-      - name: Run Cypress (record + parallel)
-        uses: cypress-io/github-action@v6
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          browser: ${{ matrix.browser }}
-          record: true
-          parallel: true
-          ci-build-id: ${{ needs.prepare.outputs.cibuuid }}-${{ matrix.browser }}
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress tests in parallel
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npx cypress run \
+            --record \
+            --parallel \
+            --ci-build-id ${{ github.run_id }}-${{ matrix.browser }} \
+            --browser ${{ matrix.browser }}
