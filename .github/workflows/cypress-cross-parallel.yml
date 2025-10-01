@@ -22,6 +22,7 @@ jobs:
 
       - name: Run Cypress Chrome in Parallel
         run: |
+          mkdir -p cypress/reports/mochawesome/chrome
           npx cypress run \
             --record --key ${{ secrets.CYPRESS_RECORD_KEY }} \
             --parallel \
@@ -45,6 +46,7 @@ jobs:
 
       - name: Run Cypress Firefox in Parallel
         run: |
+          mkdir -p cypress/reports/mochawesome/firefox
           npx cypress run \
             --record --key ${{ secrets.CYPRESS_RECORD_KEY }} \
             --parallel \
@@ -69,5 +71,6 @@ jobs:
 
       - name: Merge Mochawesome Reports
         run: |
+          mkdir -p cypress/reports/mochawesome-merged
           npx mochawesome-merge cypress/reports/mochawesome/**/*.json > cypress/reports/mochawesome-merged/report.json
           npx mochawesome-report-generator cypress/reports/mochawesome-merged/report.json -o cypress/reports/mochawesome-merged
