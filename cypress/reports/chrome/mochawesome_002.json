@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-09-30T08:09:33.976Z",
+    "end": "2025-09-30T08:09:37.985Z",
+    "duration": 4009,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "103da93e-326c-4fed-9906-06c020ae2849",
+      "title": "",
+      "fullFile": "cypress\\e2e\\ProductCheckout.cy.js",
+      "file": "cypress\\e2e\\ProductCheckout.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2b87380c-1a51-4611-bf06-80a0ea01193f",
+          "title": "Checkout Flow - SauceDemo",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "completes checkout",
+              "fullTitle": "Checkout Flow - SauceDemo completes checkout",
+              "timedOut": null,
+              "duration": 3932,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://www.saucedemo.com');\ncy.get('[data-test=\"username\"]').type('standard_user');\ncy.get('[data-test=\"password\"]').type('secret_sauce');\ncy.get('[data-test=\"login-button\"]').click();\ncy.contains('Sauce Labs Backpack').parents('.inventory_item').find('button').click();\ncy.get('.shopping_cart_link').click();\ncy.get('[data-test=\"checkout\"]').click();\ncy.get('[data-test=\"firstName\"]').type('John');\ncy.get('[data-test=\"lastName\"]').type('Doe');\ncy.get('[data-test=\"postalCode\"]').type('12345');\ncy.get('[data-test=\"continue\"]').click();\ncy.get('[data-test=\"finish\"]').click();\ncy.get('h2.complete-header', {\n  timeout: 10000\n}).should('contain.text', 'Thank you for your order!');",
+              "err": {},
+              "uuid": "5348c099-d449-45b8-87f0-15a25da2f415",
+              "parentUUID": "2b87380c-1a51-4611-bf06-80a0ea01193f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5348c099-d449-45b8-87f0-15a25da2f415"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3932,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/chrome",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.0"
+    }
+  }
+}

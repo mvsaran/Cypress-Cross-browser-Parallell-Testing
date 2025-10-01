@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-09-30T07:46:44.456Z",
+    "end": "2025-09-30T07:46:59.252Z",
+    "duration": 14796,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "76a64d15-dba4-4210-bfb5-2d43fef00a49",
+      "title": "",
+      "fullFile": "cypress\\e2e\\ProductCheckout.cy.js",
+      "file": "cypress\\e2e\\ProductCheckout.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a22a46d3-1d4f-4491-b745-8a9718ed10f6",
+          "title": "Checkout Flow - SauceDemo",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "completes checkout",
+              "fullTitle": "Checkout Flow - SauceDemo completes checkout",
+              "timedOut": null,
+              "duration": 14715,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://www.saucedemo.com');\ncy.get('[data-test=\"username\"]').type('standard_user');\ncy.get('[data-test=\"password\"]').type('secret_sauce');\ncy.get('[data-test=\"login-button\"]').click();\ncy.contains('Sauce Labs Backpack').parents('.inventory_item').find('button').click();\ncy.get('.shopping_cart_link').click();\ncy.get('[data-test=\"checkout\"]').click();\ncy.get('[data-test=\"firstName\"]').type('John');\ncy.get('[data-test=\"lastName\"]').type('Doe');\ncy.get('[data-test=\"postalCode\"]').type('12345');\ncy.get('[data-test=\"continue\"]').click();\ncy.get('[data-test=\"finish\"]').click();\ncy.get('h2.complete-header', {\n  timeout: 10000\n}).should('contain.text', 'THANK YOU FOR YOUR ORDER');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 10000ms: expected '<h2.complete-header>' to contain text 'THANK YOU FOR YOUR ORDER', but the text was 'Thank you for your order!'",
+                "estack": "AssertionError: Timed out retrying after 10000ms: expected '<h2.complete-header>' to contain text 'THANK YOU FOR YOUR ORDER', but the text was 'Thank you for your order!'\n    at Context.eval (webpack://crossbrowserandparallelexceution/./cypress/e2e/ProductCheckout.cy.js:18:3)",
+                "diff": "- 'Thank you for your order!'\n+ 'THANK YOU FOR YOUR ORDER'\n"
+              },
+              "uuid": "5245dc24-d296-4f4a-ae93-62ca6ef2f81f",
+              "parentUUID": "a22a46d3-1d4f-4491-b745-8a9718ed10f6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "5245dc24-d296-4f4a-ae93-62ca6ef2f81f"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 14715,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/edge",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.0"
+    }
+  }
+}

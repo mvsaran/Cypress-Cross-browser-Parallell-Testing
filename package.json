@@ -1,0 +1,25 @@
+{
+  "name": "crossbrowserandparallelexceution",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Saran Kumar",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+      "test:e2e": "cypress run",
+    "cy:open": "cypress open",
+  "cy:chrome": "cypress run --browser chrome --reporter mochawesome --reporter-options reportDir=cypress/reports/chrome,overwrite=false,html=true,json=true",
+  "cy:firefox": "cypress run --browser firefox --reporter mochawesome --reporter-options reportDir=cypress/reports/firefox,overwrite=false,html=true,json=true",
+  "cy:edge": "cypress run --browser edge --reporter mochawesome --reporter-options reportDir=cypress/reports/edge,overwrite=false,html=true,json=true",
+  "cy:parallel": "concurrently -k -s first \"npm run cy:chrome\" \"npm run cy:firefox\" \"npm run cy:edge\"",
+  "cy:merge-reports": "npx mochawesome-merge cypress/reports/**/*.json > cypress/reports/merged.json && npx marge cypress/reports/merged.json -f combined-report -o cypress/reports/html"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "cypress": "^15.3.0",
+    "marge": "^1.0.1",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.0.0"
+  }
+}
