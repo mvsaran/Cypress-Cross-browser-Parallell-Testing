@@ -11,9 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: 20
+
       - run: npm ci
       - run: mkdir -p cypress/reports/mochawesome/chrome
       - run: |
@@ -24,7 +26,8 @@ jobs:
             --group "chrome" \
             --reporter mochawesome \
             --reporter-options reportDir=cypress/reports/mochawesome/chrome,overwrite=false,html=false,json=true
-      - uses: actions/upload-artifact@v3
+
+      - uses: actions/upload-artifact@v4
         with:
           name: chrome-reports
           path: cypress/reports/mochawesome/chrome
@@ -33,9 +36,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: 20
+
       - run: npm ci
       - run: mkdir -p cypress/reports/mochawesome/firefox
       - run: |
@@ -46,7 +51,8 @@ jobs:
             --group "firefox" \
             --reporter mochawesome \
             --reporter-options reportDir=cypress/reports/mochawesome/firefox,overwrite=false,html=false,json=true
-      - uses: actions/upload-artifact@v3
+
+      - uses: actions/upload-artifact@v4
         with:
           name: firefox-reports
           path: cypress/reports/mochawesome/firefox
@@ -55,9 +61,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: 20
+
       - run: npm ci
       - run: mkdir -p cypress/reports/mochawesome/edge
       - run: |
@@ -68,7 +76,8 @@ jobs:
             --group "edge" \
             --reporter mochawesome \
             --reporter-options reportDir=cypress/reports/mochawesome/edge,overwrite=false,html=false,json=true
-      - uses: actions/upload-artifact@v3
+
+      - uses: actions/upload-artifact@v4
         with:
           name: edge-reports
           path: cypress/reports/mochawesome/edge
@@ -78,25 +87,31 @@ jobs:
     needs: [cypress-chrome, cypress-firefox, cypress-edge]
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: 20
+
       - run: npm ci
+
       - name: Download Chrome Reports
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: chrome-reports
           path: cypress/reports/mochawesome/chrome
+
       - name: Download Firefox Reports
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: firefox-reports
           path: cypress/reports/mochawesome/firefox
+
       - name: Download Edge Reports
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: edge-reports
           path: cypress/reports/mochawesome/edge
+
       - name: Merge Mochawesome Reports
         run: |
           mkdir -p cypress/reports/mochawesome-merged
